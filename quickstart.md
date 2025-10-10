@@ -159,3 +159,5 @@
     ```
 
     Type `y` to confirm write.
+
+1. Access the DataPower Web UI using this URL `https://<serverhostname>:9090`
