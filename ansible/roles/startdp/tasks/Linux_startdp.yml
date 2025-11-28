@@ -1,0 +1,19 @@
+---
+- name: Start the datapower service
+  ansible.builtin.systemd:
+    name: datapower
+    state: started
+    enabled: yes
+  become: yes
+
+
+- name: Run systemctl status datapower
+  ansible.builtin.command:
+    cmd: systemctl status datapower
+    register: datapower_status_result 
+  changed_when: false
+  become: yes
+
+- name: Print the service status
+  ansible.builtin.debug:
+    msg: "{{ datapower_status_result.stdout_lines }}"

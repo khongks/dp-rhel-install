@@ -1,0 +1,42 @@
+---
+# This play enables the CodeReady Builder repository and installs the EPEL release package on RHEL 8.
+# It assumes you are running against a host with a successful subscription attached.
+
+- name: Enable CodeReady Builder Repository using ansible_architecture fact
+  # The 'ansible_architecture' fact automatically captures the system architecture (e.g., x86_64 or aarch64),
+  # which is substituted into the repository name.
+  ansible.builtin.command: >
+    subscription-manager repos --enable "codeready-builder-for-rhel-8-{{ ansible_architecture }}-rpms"
+  register: crb_enable_output
+  changed_when: "'Error' not in crb_enable_output.stderr"
+  become: yes
+
+- name: Install EPEL Release RPM via DNF module
+  # Using the dnf module is the idiomatic way to manage packages and remote RPM files.
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    state: present
+  become: yes
+
+- name: Install required packages (schroot, libsepol, json-c)
+  # This task installs the specified list of packages using the dnf module.
+  # The '-y' is not needed as the dnf module handles transaction confirmation automatically.
+  ansible.builtin.dnf:
+    name:
+      - schroot
+      - libsepol
+      - json-c
+    state: present
+  become: yes
+
+- name: Verify repository list (dnf repolist)
+  # This task mirrors the final command in your request to confirm the repositories are enabled.
+  ansible.builtin.command: dnf repolist
+  register: repolist_output
+  changed_when: false
+  become: yes
+
+- name: Print repository list output
+  # Display the output of the 'dnf repolist' command for verification.
+  ansible.builtin.debug:
+    var: repolist_output.stdout_lines

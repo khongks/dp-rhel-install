@@ -1,0 +1,17 @@
+---
+- hosts: "{{ ansible_play_hosts }}"
+  become: true
+  vars:
+    version: 10502
+    edition: lts
+    mode: nonprod
+
+  roles:
+    - role: installprereqs
+    - role: copyfile
+      vars:
+        src_file_path: /root/downloads/idg/idg_lx{{ version }}.tar
+        dest_file_path: /tmp/idg_lx{{ version }}.tar
+    - role: installdp
+    - role: configuredp
+    - role: startdp

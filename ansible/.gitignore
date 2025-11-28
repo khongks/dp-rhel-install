@@ -1,0 +1,50 @@
+# ----------------------------------------------------------------------
+# Ansible .gitignore
+# Recommended for Ansible Playbooks, Roles, and Collections
+# ----------------------------------------------------------------------
+
+### 1. Temporary and Runtime Files (Always Ignore) ###
+# Files created by the Ansible runtime (e.g., facts, temporary module data)
+.ansible/
+*.retry
+*.vault-id
+
+# Logs and Debug files
+*.log
+*.out
+
+# Standard temporary files
+*~
+# Vim/Nano backup files
+*.swp
+*.bak
+
+### 2. Sensitive Data and Credentials ###
+# Files used to store vault passwords or encrypted variables
+# You should generally use a vault password file, but ignore its contents if stored locally.
+.vault-pass
+*password.txt
+*secret.txt
+
+### 3. Environment and Inventory Artifacts ###
+# Python virtual environments (common for running Ansible)
+.venv/
+venv/
+
+# Python compiled files
+__pycache__/
+*.pyc
+
+# Local Test Inventories
+# Ignore any specific test inventories that aren't meant for source control.
+test_inventory
+inventory-local
+
+### 4. General Development Tools ###
+# macOS files
+.DS_Store
+
+# IDE and Editor files (VS Code, Sublime, IntelliJ/PyCharm)
+.vscode/
+.idea/
+.sublime-workspace

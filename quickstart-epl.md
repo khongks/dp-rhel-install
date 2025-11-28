@@ -169,3 +169,50 @@ The DataPower Gateway depends on the schroot package. You can obtain the schroot
 
 1. Access the DataPower Web UI using this URL
 `https://<serverhostname>:9090` and accept license (need to wait a while after accept).
+
+
+## Setup RAID (File option)
+
+1. Create an Linux image file for DataPower RAID (12GB)
+    ```
+    dd if=/dev/zero of=/opt/ibm/datapower/raid.img bs=1M count=12000
+
+    12000+0 records in
+    12000+0 records out
+    12582912000 bytes (13 GB, 12 GiB) copied, 12.9643 s, 971 MB/s
+    ```
+
+1. Add this line in /opt/ibm/datapower/datapower.conf
+    ```
+    DataPowerRaidDevice=/opt/ibm/datapower/raid.img
+    ```
+
+1. Restart DataPower service
+    ```
+    systemctl restart datapower
+    ```
+
+1. Configure RAID array
+
+    1. In the search field, enter RAID.
+    1. From the results, select RAID array.
+    1. Select the name of the array.
+    1. Set the administrative state of the configuration.
+    1. Optional: Set Set to read-only to control whether file access is read-only access.
+    1. In the Directory field, specify the subdirectory to make the files available.
+    1. Click Apply to save changes to the running configuration.
+    1. Click Save to save changes to the persisted configuration.
+
+    or via CLI
+    ```
+    config; raid-volume raid0; directory raid0; exit; write mem;
+    ```
+
+1. Initialize RAID file system
+
+    1. In the search field, enter raid.
+    1. From the results, select RAID array.
+    1. Select the name of the array.
+    1. Select Initialize file system from the actions list.
+
+
