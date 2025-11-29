@@ -8,9 +8,9 @@
   roles:
     - role: installprereqs
     - role: copyfile
-      vars:
-        src_file_path: /root/downloads/idg/idg_lx{{ version }}.tar
-        dest_file_path: /tmp/idg_lx{{ version }}.tar
+      # vars:
+        # src_file_path: /root/downloads/idg/idg_lx{{ version }}.tar
+        # dest_file_path: /tmp/idg_lx{{ version }}.tar
     - role: installdp
     - role: configuredp
     - role: startdp
