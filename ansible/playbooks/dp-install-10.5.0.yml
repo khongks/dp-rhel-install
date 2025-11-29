@@ -5,7 +5,6 @@
     version: 10502
     edition: lts
     mode: nonprod
-
   roles:
     - role: installprereqs
     - role: copyfile
