@@ -1,7 +1,5 @@
 ---
-# This play enables the CodeReady Builder repository and installs the EPEL release package on RHEL 8.
-# It assumes you are running against a host with a successful subscription attached.
-
+# The leading hyphen below is the fix. It turns the following block into the first item of a YAML list.
 - name: Enable CodeReady Builder Repository using ansible_architecture fact
   # The 'ansible_architecture' fact automatically captures the system architecture (e.g., x86_64 or aarch64),
   # which is substituted into the repository name.
