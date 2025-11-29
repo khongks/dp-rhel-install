@@ -1,19 +1,15 @@
 ---
 - name: Copy a file from the controller to the target host
-  tasks:
-    - name: Ensure the configuration file is present
-      ansible.builtin.copy:
-        src: {{ src_file_path }}  # Path to the file on the Ansible controller
-        dest: {{ dest_file_path }} # Desired path on the target host
-        owner: root
-        group: root
-        mode: '0644' # Standard read/write for owner, read-only for others
-  become: yes
+  ansible.builtin.copy:
+    src: {{ src_file_path }}  # Path to the file on the Ansible controller
+    dest: {{ dest_file_path }} # Desired path on the target host
+    owner: root
+    group: root
+    mode: '0644' # Standard read/write for owner, read-only for others
+  become: true
 
 - name: Extract (untar) a compressed archive file
-  tasks:
-    - name: Extract tar.gz file to a specific destination
-      ansible.builtin.unarchive:
-        src: {{ dest_file_path }}
-        dest: /tmp 
-  become: yes
+  ansible.builtin.unarchive:
+    src: {{ dest_file_path }}
+    dest: /tmp 
+  become: true

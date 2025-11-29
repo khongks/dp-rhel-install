@@ -7,5 +7,5 @@
           - /tmp/idg_lx{{ version }}.{{ mode }}.common.x86_64.rpm
           - /tmp/idg_lx{{ version }}.{{ mode}}.{{ edition }}.image.x86_64.rpm
         state: present
-        disable_gpg_check: yes 
-  become: yes
+        disable_gpg_check: true 
+  become: true
