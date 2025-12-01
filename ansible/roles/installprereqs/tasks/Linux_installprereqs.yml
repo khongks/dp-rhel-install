@@ -1,4 +1,3 @@
 ---
 - name: Enable CodeReady Builder Repository using ansible_architecture fact
-  ansible.builtin.command: 'subscription-manager repos --enable=rhel-8-for-{{ ansible_architecture }}-crb-rpms'
-  become: true
+  ansible.builtin.command: subscription-manager repos --enable "codeready-builder-for-rhel-8-{{ ansible_architecture }}-rpms"
