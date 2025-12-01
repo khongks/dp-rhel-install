@@ -1,6 +1,8 @@
 ---
 - name: Including the vars for this platform
-  ansible.builtin.include_vars: "{{ ansible_system }}_{{ role_name }}.yml"
+  ansible.builtin.include_vars: "{{ ansible_system }}_{{ role_name }}_vars.yml"
+  # This will load a file like Linux_installprereqs_vars.yml
 
 - name: Including the task list for this platform
   ansible.builtin.include_tasks: "{{ ansible_system }}_{{ role_name }}.yml"
+  # This will load your existing task file: Linux_installprereqs.yml
