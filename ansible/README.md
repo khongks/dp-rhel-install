@@ -65,5 +65,5 @@
 
 1. Run the sample playbook
     ```
-    ansible-playbook dp-install-10.5.0.yml -i inventory.ini
+    ansible-playbook dp-install-10.5.0.2.yml -i inventory.ini
     ```

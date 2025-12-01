@@ -2,11 +2,12 @@
 - hosts: "{{ ansible_play_hosts }}"
   become: true
   vars:
-    version: 10502
-    edition: lts
+    version: 10650
+    edition: cd
     mode: nonprod
     image_size: 16G
     raid_device: /dev/vdb
+    epel: false
   roles:
     - installprereqs
     - role: copyfile

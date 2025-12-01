@@ -1,21 +1,7 @@
 ---
-- name: Enable CodeReady Builder Repository using ansible_architecture fact
-  ansible.builtin.command: "subscription-manager repos --enable codeready-builder-for-rhel-8-{{ ansible_architecture }}-rpms"
-  register: crb_enable_output
-  changed_when: "'Error' not in crb_enable_output.stderr"
-  become: true
-
-- name: Install EPEL Release RPM via DNF module
-  ansible.builtin.dnf:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    state: present
-    disable_gpg_check: true
-  become: true
-
-- name: Install required packages (schroot, libsepol, json-c)
+- name: Install required packages (libsepol, json-c, telnet)
   ansible.builtin.dnf:
     name:
-      - schroot
       - libsepol
       - json-c
       - telnet
