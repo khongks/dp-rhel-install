@@ -5,6 +5,8 @@
     version: 10502
     edition: lts
     mode: nonprod
+    image_size: 16G
+    raid_device: /dev/vdb
   roles:
     - installprereqs
     - role: copyfile

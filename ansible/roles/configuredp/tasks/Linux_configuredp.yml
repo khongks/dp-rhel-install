@@ -11,12 +11,11 @@
   loop:
     - DataPowerConfigDir=/datapower/config
     - DataPowerLocalDir=/datapower/local
-    - DataPowerImageSize=16G
-    - DataPowerRaidDevice=/dev/vdb
+    - DataPowerImageSize={{ image_size }}
+    - DataPowerRaidDevice={{ raid_device }}
     - DataPowerAcceptLicense=true
   become: true
 
----
 - name: Create directories /datapower/config and /datapower/local
   ansible.builtin.file:
     path: "{{ item }}"

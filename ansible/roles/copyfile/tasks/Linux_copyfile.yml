@@ -1,8 +1,8 @@
 ---
 - name: Copy a file from the controller to the target host
   ansible.builtin.copy:
-    src: {{ src_file_path }}  # Path to the file on the Ansible controller
-    dest: {{ dest_file_path }} # Desired path on the target host
+    src: "{{ src_file_path }}"  # Path to the file on the Ansible controller
+    dest: "{{ dest_file_path }}" # Desired path on the target host
     owner: root
     group: root
     mode: '0644' # Standard read/write for owner, read-only for others
@@ -10,6 +10,7 @@
 
 - name: Extract (untar) a compressed archive file
   ansible.builtin.unarchive:
-    src: {{ dest_file_path }}
-    dest: /tmp 
+    src: "{{ dest_file_path }}"
+    dest: /tmp
+    remote_src: yes
   become: true

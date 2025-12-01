@@ -1,11 +1,9 @@
 ---
 - name: Install IDG packages using dnf module
-  tasks:
-    - name: Install common and nonprod IDG RPM packages
-      ansible.builtin.dnf:
-        name:
-          - /tmp/idg_lx{{ version }}.{{ mode }}.common.x86_64.rpm
-          - /tmp/idg_lx{{ version }}.{{ mode}}.{{ edition }}.image.x86_64.rpm
-        state: present
-        disable_gpg_check: true 
+  ansible.builtin.dnf:
+    name:
+      - /tmp/idg_lx{{ version }}.{{ edition }}.common.x86_64.rpm
+      - /tmp/idg_lx{{ version }}.{{ edition }}.{{ mode }}.image.x86_64.rpm
+    state: present
+    disable_gpg_check: true 
   become: true
