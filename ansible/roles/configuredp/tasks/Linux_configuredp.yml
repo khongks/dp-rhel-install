@@ -9,10 +9,13 @@
     group: root
     mode: '0644'
   loop:
-    - DataPowerConfigDir=/datapower/config
-    - DataPowerLocalDir=/datapower/local
-    - DataPowerImageSize={{ image_size }}
+    - EnableStandbyControl={{ standby_control }}
     - DataPowerRaidDevice={{ raid_device }}
+    - DataPowerCpuCount={{ cpu_limit }}
+    - DataPowerMemoryLimit={{ memory_limit }}
+    - DataPowerConfigDir={{ config_dir}}
+    - DataPowerLocalDir={{ local_dir }}
+    - DataPowerImageSize={{ image_size }}
     - DataPowerAcceptLicense=true
   become: true
 

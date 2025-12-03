@@ -5,8 +5,13 @@
     version: 10502
     edition: lts
     mode: nonprod
-    image_size: 16G
+    standby_control: false
     raid_device: /dev/vdb
+    cpu_limit: 4
+    memory_limit: 8192
+    config_dir: /datapower/config
+    local_dir: /datapower/local
+    image_size: 16G
     epel: true
   roles:
     - installprereqs
